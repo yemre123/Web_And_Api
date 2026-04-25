@@ -1,6 +1,6 @@
 @model WebUI.Models.FanSchedulePageViewModel
 @{
-    ViewData["Title"] = "Fan Schedule yemre";
+    ViewData["Title"] = "Fan Zamanlayıcı şeysi";
 }
 
 <div class="fan-page flex flex-col gap-3">
@@ -24,29 +24,29 @@
             <div asp-validation-summary="ModelOnly" class="sm:col-span-2 text-sm text-rose-300"></div>
 
             <div class="sm:col-span-2">
-                <label asp-for="NewItem.DeviceName" class="mb-1 block text-sm font-medium text-slate-300">Device Name</label>
+                <label asp-for="NewItem.DeviceName" class="mb-1 block text-sm font-medium text-slate-300">Cihaz Adı</label>
                 <input asp-for="NewItem.DeviceName" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
                 <span asp-validation-for="NewItem.DeviceName" class="text-xs text-rose-300"></span>
             </div>
 
             <div>
-                <label asp-for="NewItem.StopStartTime" class="mb-1 block text-sm font-medium text-slate-300">Stop Start</label>
+                <label asp-for="NewItem.StopStartTime" class="mb-1 block text-sm font-medium text-slate-300">Duruş Başlangıç Saati:</label>
                 <input asp-for="NewItem.StopStartTime" type="time" lang="tr-TR" step="60" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
                 <span asp-validation-for="NewItem.StopStartTime" class="text-xs text-rose-300"></span>
             </div>
             <div>
-                <label asp-for="NewItem.StopEndTime" class="mb-1 block text-sm font-medium text-slate-300">Stop End</label>
+                <label asp-for="NewItem.StopEndTime" class="mb-1 block text-sm font-medium text-slate-300">Duruş Bitiş Saati:</label>
                 <input asp-for="NewItem.StopEndTime" type="time" lang="tr-TR" step="60" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
                 <span asp-validation-for="NewItem.StopEndTime" class="text-xs text-rose-300"></span>
             </div>
 
             <div>
-                <label asp-for="NewItem.RunSeconds" class="mb-1 block text-sm font-medium text-slate-300">Run (sec)</label>
+                <label asp-for="NewItem.RunSeconds" class="mb-1 block text-sm font-medium text-slate-300">Çalışma Süresi (sn.)</label>
                 <input asp-for="NewItem.RunSeconds" min="1" inputmode="numeric" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
                 <span asp-validation-for="NewItem.RunSeconds" class="text-xs text-rose-300"></span>
             </div>
             <div>
-                <label asp-for="NewItem.StopSeconds" class="mb-1 block text-sm font-medium text-slate-300">Stop (sec)</label>
+                <label asp-for="NewItem.StopSeconds" class="mb-1 block text-sm font-medium text-slate-300">Dinlenme Süresi (sn.)</label>
                 <input asp-for="NewItem.StopSeconds" min="0" inputmode="numeric" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
                 <span asp-validation-for="NewItem.StopSeconds" class="text-xs text-rose-300"></span>
             </div>
@@ -86,25 +86,25 @@
                 <div class="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-lg shadow-slate-950/40">
                     <form asp-action="Update" method="post" class="grid grid-cols-1 gap-3 sm:grid-cols-2">
                         <div class="sm:col-span-2">
-                            <label class="mb-1 block text-sm font-medium text-slate-300">Device Name</label>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">Cihaz Adı</label>
                             <input name="DeviceName" value="@item.DeviceName" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-200" readonly />
                         </div>
 
                         <div>
-                            <label class="mb-1 block text-sm font-medium text-slate-300">Stop Start</label>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">Duruş Başlangıç Saati:</label>
                             <input name="StopStartTime" value="@item.StopStartTime" type="time" lang="tr-TR" step="60" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 focus:border-sky-500 focus:outline-none" />
                         </div>
                         <div>
-                            <label class="mb-1 block text-sm font-medium text-slate-300">Stop End</label>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">Duruş Bitiş Saati:</label>
                             <input name="StopEndTime" value="@item.StopEndTime" type="time" lang="tr-TR" step="60" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 focus:border-sky-500 focus:outline-none" />
                         </div>
 
                         <div>
-                            <label class="mb-1 block text-sm font-medium text-slate-300">Run (sec)</label>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">Çalışma Süresi (Sn.)</label>
                             <input name="RunSeconds" value="@item.RunSeconds" type="number" min="1" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 focus:border-sky-500 focus:outline-none" />
                         </div>
                         <div>
-                            <label class="mb-1 block text-sm font-medium text-slate-300">Stop (sec)</label>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">Dinlenme Süresi (Sn.)</label>
                             <input name="StopSeconds" value="@item.StopSeconds" type="number" min="0" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 focus:border-sky-500 focus:outline-none" />
                         </div>
 
