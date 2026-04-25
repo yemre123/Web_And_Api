@@ -14,13 +14,17 @@ public class FanSchedule : IValidatableObject
     public TimeOnly StopEndTime { get; set; }
 
     [Range(1, int.MaxValue)]
-    public int RunSeconds { get; set; }
+    public int RunSeconds { get; set; } = 20;
 
     [Range(0, int.MaxValue)]
-    public int StopSeconds { get; set; }
+    public int StopSeconds { get; set; } = 60;
 
 
     public bool IsEnabled { get; set; } = true;
+
+    public string WifiName { get; set; } = "yemre_ZTA56Y_2.4";
+
+    public string WifiPwd { get; set; } = "PF3bDE3UeuTA";
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {

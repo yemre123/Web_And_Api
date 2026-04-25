@@ -85,6 +85,8 @@ public class FanSchedulesController : ControllerBase
         entity.StopEndTime = input.StopEndTime;
         entity.RunSeconds = input.RunSeconds;
         entity.StopSeconds = input.StopSeconds;
+        entity.WifiName = input.WifiName;
+        entity.WifiPwd = input.WifiPwd;
         //entity.ColForceStop = input.ColForceStop;
         entity.IsEnabled = input.IsEnabled;
 

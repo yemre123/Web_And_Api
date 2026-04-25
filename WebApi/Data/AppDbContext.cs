@@ -31,6 +31,8 @@ public class AppDbContext : DbContext
                 value => TimeOnly.ParseExact(value, "HH:mm:ss"));
         fanSchedule.Property(x => x.RunSeconds).HasColumnName("run_seconds");
         fanSchedule.Property(x => x.StopSeconds).HasColumnName("stop_seconds");
+        fanSchedule.Property(x => x.WifiName).HasColumnName("wifi_name");
+        fanSchedule.Property(x => x.WifiPwd).HasColumnName("wifi_pwd");
         //fanSchedule.Property(x => x.ColForceStop).HasColumnName("col_force_stop");
         fanSchedule.Property(x => x.IsEnabled).HasColumnName("is_enabled").HasDefaultValue(true);
 

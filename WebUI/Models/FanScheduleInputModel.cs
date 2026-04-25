@@ -15,14 +15,18 @@ public class FanScheduleInputModel : IValidatableObject
     public string StopEndTime { get; set; } = "10:00";
 
     [Range(1, int.MaxValue)]
-    public int RunSeconds { get; set; } = 10;
+    public int RunSeconds { get; set; } = 30;
 
     [Range(0, int.MaxValue)]
-    public int StopSeconds { get; set; } = 900;
+    public int StopSeconds { get; set; } = 300;
 
     //public bool ColForceStop { get; set; }
 
     public bool IsEnabled { get; set; } = true;
+
+    public string WifiName { get; set; } = "yemre_ZTA56Y_2.4";
+
+    public string WifiPwd { get; set; } = "PF3bDE3UeuTA";
 
     [DataType(DataType.Password)]
     public string? NewRowPassword { get; set; }

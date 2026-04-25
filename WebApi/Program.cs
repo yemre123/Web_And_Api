@@ -24,6 +24,8 @@ using (var scope = app.Services.CreateScope())
             "devicename" TEXT NOT NULL CONSTRAINT "PK_FanSchedules" PRIMARY KEY,
             "stop_start_time" TEXT NOT NULL,
             "stop_end_time" TEXT NOT NULL,
+            "wifi_name" TEXT NOT NULL,
+            "wifi_pwd" TEXT NOT NULL,
             "run_seconds" INTEGER NOT NULL,
             "stop_seconds" INTEGER NOT NULL,            
             "is_enabled" INTEGER NOT NULL DEFAULT 1,
