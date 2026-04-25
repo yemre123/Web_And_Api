@@ -5,7 +5,7 @@
 
 <div class="fan-page flex flex-col gap-3">
     <div class="mb-4 flex items-center justify-between">
-        <h1 class="text-xl font-semibold text-slate-100">Fan Schedule bu uygulama   33 nolu aprtmandaki  network kontrol cihazları için kuruldu</h1>
+        <h1 class="text-xl font-semibold text-slate-100">Fan Zamanlayıcı şeysi</h1>
         <small class="text-xs text-slate-400">Always dark</small>
     </div>
 
@@ -49,6 +49,18 @@
                 <label asp-for="NewItem.StopSeconds" class="mb-1 block text-sm font-medium text-slate-300">Dinlenme Süresi (sn.)</label>
                 <input asp-for="NewItem.StopSeconds" min="0" inputmode="numeric" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
                 <span asp-validation-for="NewItem.StopSeconds" class="text-xs text-rose-300"></span>
+            </div>
+
+            <div>
+                <label asp-for="NewItem.WifiName" class="mb-1 block text-sm font-medium text-slate-300">WIFI Adı</label>
+                <input asp-for="NewItem.WifiName" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                <span asp-validation-for="NewItem.WifiName" class="text-xs text-rose-300"></span>
+            </div>
+
+            <div>
+                <label asp-for="NewItem.WifiPwd" class="mb-1 block text-sm font-medium text-slate-300">WIFI Password</label>
+                <input asp-for="NewItem.WifiPwd" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                <span asp-validation-for="NewItem.WifiPwd" class="text-xs text-rose-300"></span>
             </div>
 
             <div class="sm:col-span-2">
@@ -106,6 +118,16 @@
                         <div>
                             <label class="mb-1 block text-sm font-medium text-slate-300">Dinlenme Süresi (Sn.)</label>
                             <input name="StopSeconds" value="@item.StopSeconds" type="number" min="0" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 focus:border-sky-500 focus:outline-none" />
+                        </div>
+
+                        <div>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">WIFI Adı</label>
+                            <input name="DeviceName" value="@item.WifiName" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-200"  />
+                        </div>
+
+                        <div>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">WIFI Password</label>
+                            <input name="DeviceName" value="@item.WifiPwd" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-200"  />
                         </div>
 
                         <div class="sm:col-span-2 flex flex-wrap gap-4 pt-1 text-sm text-slate-300">

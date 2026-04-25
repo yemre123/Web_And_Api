@@ -71,6 +71,8 @@ public class FanScheduleApiService
             StopEndTime = NormalizeTime(model.StopEndTime),
             model.RunSeconds,
             model.StopSeconds,
+            model.WifiName,
+            model.WifiPwd,
             //model.ColForceStop,
             model.IsEnabled
         };
