@@ -22,9 +22,9 @@ public class FanSchedule : IValidatableObject
 
     public bool IsEnabled { get; set; } = true;
 
-    public string WifiName { get; set; } = "yemre_ZTA56Y_2.4";
+    public string WifiName { get; set; }
 
-    public string WifiPwd { get; set; } = "PF3bDE3UeuTA";
+    public string WifiPwd { get; set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {

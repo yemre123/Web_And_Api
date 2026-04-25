@@ -24,9 +24,11 @@ public class FanScheduleInputModel : IValidatableObject
 
     public bool IsEnabled { get; set; } = true;
 
-    public string WifiName { get; set; } = "yemre_ZTA56Y_2.4";
-
-    public string WifiPwd { get; set; } = "PF3bDE3UeuTA";
+    [Required]
+    public string WifiName { get; set; }
+    
+    [Required]
+    public string WifiPwd { get; set; }
 
     [DataType(DataType.Password)]
     public string? NewRowPassword { get; set; }
