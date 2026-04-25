@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../WebUI/WebUI.csproj" />
+  <Project Path="WebApi.csproj" />
+</Solution>

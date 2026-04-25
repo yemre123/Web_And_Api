@@ -1,0 +1,136 @@
+@model WebUI.Models.FanSchedulePageViewModel
+@{
+    ViewData["Title"] = "Fan Schedule";
+}
+
+<div class="fan-page flex flex-col gap-3">
+    <div class="mb-4 flex items-center justify-between">
+        <h1 class="text-xl font-semibold text-slate-100">Fan Schedule</h1>
+        <small class="text-xs text-slate-400">Always dark</small>
+    </div>
+
+    @if (TempData["SuccessMessage"] is string success)
+    {
+        <div class="mb-3 rounded-lg border border-emerald-700/60 bg-emerald-900/40 px-4 py-3 text-sm text-emerald-200">@success</div>
+    }
+    @if (TempData["ErrorMessage"] is string error)
+    {
+        <div class="mb-3 rounded-lg border border-rose-700/60 bg-rose-900/40 px-4 py-3 text-sm text-rose-200">@error</div>
+    }
+
+    <div class="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-lg shadow-slate-950/40">
+        <div class="mb-3 text-sm font-semibold text-slate-300">New Schedule</div>
+        <form asp-action="Create" method="post" class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div asp-validation-summary="ModelOnly" class="sm:col-span-2 text-sm text-rose-300"></div>
+
+            <div class="sm:col-span-2">
+                <label asp-for="NewItem.DeviceName" class="mb-1 block text-sm font-medium text-slate-300">Device Name</label>
+                <input asp-for="NewItem.DeviceName" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                <span asp-validation-for="NewItem.DeviceName" class="text-xs text-rose-300"></span>
+            </div>
+
+            <div>
+                <label asp-for="NewItem.StopStartTime" class="mb-1 block text-sm font-medium text-slate-300">Stop Start</label>
+                <input asp-for="NewItem.StopStartTime" type="time" lang="tr-TR" step="60" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                <span asp-validation-for="NewItem.StopStartTime" class="text-xs text-rose-300"></span>
+            </div>
+            <div>
+                <label asp-for="NewItem.StopEndTime" class="mb-1 block text-sm font-medium text-slate-300">Stop End</label>
+                <input asp-for="NewItem.StopEndTime" type="time" lang="tr-TR" step="60" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                <span asp-validation-for="NewItem.StopEndTime" class="text-xs text-rose-300"></span>
+            </div>
+
+            <div>
+                <label asp-for="NewItem.RunSeconds" class="mb-1 block text-sm font-medium text-slate-300">Run (sec)</label>
+                <input asp-for="NewItem.RunSeconds" min="1" inputmode="numeric" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                <span asp-validation-for="NewItem.RunSeconds" class="text-xs text-rose-300"></span>
+            </div>
+            <div>
+                <label asp-for="NewItem.StopSeconds" class="mb-1 block text-sm font-medium text-slate-300">Stop (sec)</label>
+                <input asp-for="NewItem.StopSeconds" min="0" inputmode="numeric" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                <span asp-validation-for="NewItem.StopSeconds" class="text-xs text-rose-300"></span>
+            </div>
+
+            <div class="sm:col-span-2">
+                <label asp-for="NewItem.NewRowPassword" class="mb-1 block text-sm font-medium text-slate-300">Password (new row)</label>
+                <input asp-for="NewItem.NewRowPassword" type="password" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-base text-slate-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                <span asp-validation-for="NewItem.NewRowPassword" class="text-xs text-rose-300"></span>
+            </div>
+
+            <div class="sm:col-span-2 flex flex-wrap gap-4 pt-1 text-sm text-slate-300">
+ @*                <label class="inline-flex items-center gap-2">
+                    <input asp-for="NewItem.ColForceStop" class="h-4 w-4 rounded border-slate-600 bg-slate-950 text-sky-500 focus:ring-sky-500" />
+                    <span>Force Stop</span>
+                </label> *@
+                <label class="inline-flex items-center gap-2">
+                    <input asp-for="NewItem.IsEnabled" class="h-4 w-4 rounded border-slate-600 bg-slate-950 text-sky-500 focus:ring-sky-500" />
+                    <span>Enabled</span>
+                </label>
+            </div>
+
+            <div class="sm:col-span-2 pt-2">
+                <button type="submit" class="w-full rounded-lg bg-sky-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-sky-500">Add New Schedule</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-4 space-y-3">
+        @if (!Model.Items.Any())
+        {
+            <div class="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-300">No schedule rows yet.</div>
+        }
+        else
+        {
+            @foreach (var item in Model.Items)
+            {
+                <div class="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-lg shadow-slate-950/40">
+                    <form asp-action="Update" method="post" class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        <div class="sm:col-span-2">
+                            <label class="mb-1 block text-sm font-medium text-slate-300">Device Name</label>
+                            <input name="DeviceName" value="@item.DeviceName" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-200" readonly />
+                        </div>
+
+                        <div>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">Stop Start</label>
+                            <input name="StopStartTime" value="@item.StopStartTime" type="time" lang="tr-TR" step="60" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 focus:border-sky-500 focus:outline-none" />
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">Stop End</label>
+                            <input name="StopEndTime" value="@item.StopEndTime" type="time" lang="tr-TR" step="60" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 focus:border-sky-500 focus:outline-none" />
+                        </div>
+
+                        <div>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">Run (sec)</label>
+                            <input name="RunSeconds" value="@item.RunSeconds" type="number" min="1" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 focus:border-sky-500 focus:outline-none" />
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-sm font-medium text-slate-300">Stop (sec)</label>
+                            <input name="StopSeconds" value="@item.StopSeconds" type="number" min="0" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 focus:border-sky-500 focus:outline-none" />
+                        </div>
+
+                        <div class="sm:col-span-2 flex flex-wrap gap-4 pt-1 text-sm text-slate-300">
+                       @*      <label class="inline-flex items-center gap-2">
+                                <input name="ColForceStop" value="true" type="checkbox" class="h-4 w-4 rounded border-slate-600 bg-slate-950 text-sky-500 focus:ring-sky-500" checked="@item.ColForceStop" />
+                                <input name="ColForceStop" value="false" type="hidden" />
+                                <span>Force Stop</span>
+                            </label> *@
+                            <label class="inline-flex items-center gap-2">
+                                <input name="IsEnabled" value="true" type="checkbox" class="h-4 w-4 rounded border-slate-600 bg-slate-950 text-sky-500 focus:ring-sky-500" checked="@item.IsEnabled" />
+                                <input name="IsEnabled" value="false" type="hidden" />
+                                <span>Enabled</span>
+                            </label>
+                        </div>
+
+                        <div class="sm:col-span-2 pt-1">
+                            <button type="submit" class="w-full rounded-lg border border-sky-500/70 bg-slate-950 px-4 py-2.5 text-sm font-semibold text-sky-300 transition hover:bg-slate-800">Update</button>
+                        </div>
+                    </form>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
